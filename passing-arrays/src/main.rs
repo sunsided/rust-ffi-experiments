@@ -7,10 +7,11 @@ extern "C" {
 fn main() {
     let numbers: [c_int; 8] = [1, 2, 3, 4, 5, 6, 7, 8];
 
-    unsafe {
-        let total = sum(numbers.as_ptr(), numbers.len() as c_int);
-        println!("The total is {}", total);
+    // An unsafe block is required since we're dealing with raw pointers.
+    let total = unsafe {
+        sum(numbers.as_ptr(), numbers.len() as c_int)
+    };
 
-        assert_eq!(total, numbers.iter().sum());
-    }
+    println!("The total is {}", total);
+    assert_eq!(total, numbers.iter().sum());
 }

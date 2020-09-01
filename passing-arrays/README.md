@@ -1,5 +1,11 @@
 # Passing arrays from and to Rust
 
+TL;DR
+
+```bash
+make run
+```
+
 ## Finding the shared object
 
 After linking the executable, it may still fail at runtime with an error like the following:
