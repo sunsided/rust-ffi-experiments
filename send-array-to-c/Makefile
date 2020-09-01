@@ -1,6 +1,6 @@
 .PHONY: all
 
-all: clean array_utils main
+all: clean main
 
 clean:
 	rm -rf build/
@@ -11,7 +11,7 @@ build_dir:
 array_utils: build_dir src/array_utils.c
 	clang -shared src/array_utils.c -o build/libarray_utils.so
 
-main: build_dir src/main.rs
+main: array_utils src/main.rs
 	rustc --crate-type=bin src/main.rs -o build/arrays -L. -Lbuild -larray_utils -C link-arg=-Wl,-rpath=.
 
 ldd: main

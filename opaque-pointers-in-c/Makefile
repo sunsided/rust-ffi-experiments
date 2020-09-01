@@ -11,7 +11,7 @@ build_dir:
 my_vec: build_dir src/my_vec.rs
 	rustc src/my_vec.rs --crate-type cdylib --out-dir=build
 
-main: build_dir src/main.c
+main: my_vec src/main.c
 	cc -o build/main src/main.c -L. -Lbuild -lmy_vec -Wl,-rpath=.
 
 ldd: main

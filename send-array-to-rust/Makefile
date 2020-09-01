@@ -1,6 +1,6 @@
 .PHONY: all
 
-all: clean array_utils main
+all: clean main
 
 clean:
 	rm -rf build/
@@ -11,7 +11,7 @@ build_dir:
 array_utils: build_dir src/rust_array_utils.rs
 	rustc src/rust_array_utils.rs --crate-type cdylib --out-dir=build
 
-main: build_dir src/main.c
+main: array_utils src/main.c
 	cc -o build/arrays src/main.c -L. -Lbuild -lrust_array_utils -Wl,-rpath=.
 
 ldd: main
