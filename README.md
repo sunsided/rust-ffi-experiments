@@ -10,3 +10,4 @@ An experiment for learning Rust's FFI. Some pointers:
 - [Passing complex types from Rust to C through opaque pointers](opaque-pointers-in-c) (with Valgrind examples)
 - [Basic Callbacks: Passing a Rust function pointer to C](basic-callbacks)
 - [Stateful Callbacks: Calling from C into a Rust function pointer (passing some state)](stateful-callbacks)
+- [Cargo Build Scripts](build-scripts) (i.e., `build.rs`)
