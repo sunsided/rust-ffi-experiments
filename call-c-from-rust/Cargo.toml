@@ -1,5 +1,5 @@
 [package]
-name = "puts-example"
+name = "call-c-from-rust"
 version = "0.1.0"
 authors = ["Markus Mayer <widemeadows@gmail.com>"]
 edition = "2018"
