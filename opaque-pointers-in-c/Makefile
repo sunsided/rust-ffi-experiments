@@ -22,3 +22,6 @@ ldd-debug: main
 
 run: all
 	cd build && ./main
+
+valgrind: all
+	cd build && valgrind ./main
