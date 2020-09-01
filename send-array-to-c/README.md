@@ -1,4 +1,7 @@
-# Passing arrays from and to Rust
+# Passing arrays from C to Rust
+
+Here, a Rust application provides a slice in [main.rs](src/main.rs) and sets it to a C function in 
+[array_utils.c](src/array_utils.c) that calculates the sum of its elements. 
 
 TL;DR
 

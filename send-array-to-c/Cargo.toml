@@ -1,5 +1,5 @@
 [package]
-name = "passing-arrays"
+name = "send-array-to-c"
 version = "0.1.0"
 authors = ["Markus Mayer <widemeadows@gmail.com>"]
 edition = "2018"
