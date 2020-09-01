@@ -40,3 +40,5 @@ rustc \
     -larray_utils \
     src/main.rs
 ```
+
+There's a nice article about `rpath` and `runpath` at [Shared Libraries: Understanding Dynamic Loading](https://amir.rachum.com/blog/2016/09/17/shared-libraries/).
