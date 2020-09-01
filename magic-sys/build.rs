@@ -1,6 +1,5 @@
 extern crate bindgen;
 
-use std::env;
 use std::path::PathBuf;
 
 fn main() {
@@ -14,12 +13,15 @@ fn main() {
     // to bindgen, and lets you build up options for
     // the resulting bindings.
     let bindings = bindgen::Builder::default()
-        // The input header we would like to generate
-        // bindings for.
+        // The input header we would like to generate bindings for.
         .header("wrapper.h")
         // Create bindings for everything magical.
         .whitelist_function("magic_.*")
         .whitelist_var("MAGIC_.*")
+        // Doesn't appear to work right now, but maybe some day ...
+        .generate_comments(true)
+        // Suppress linter warnings.
+        .raw_line("#![allow(non_camel_case_types)]")
         // Tell cargo to invalidate the built crate whenever any of the
         // included header files changed.
         .parse_callbacks(Box::new(bindgen::CargoCallbacks))

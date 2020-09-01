@@ -20,3 +20,4 @@ Here are some pointers:
 Using `bindgen`:
 
 - [Creating a C library binding with `bindgen`](magic-sys)
+- [Building a safe wrapper around the `magic-sys` bindgen'd library](magic)

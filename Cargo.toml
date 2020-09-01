@@ -1,2 +1,2 @@
 [workspace]
-members = ["call-c-from-rust", "send-array-to-c", "build-scripts", "magic-sys"]
+members = ["call-c-from-rust", "send-array-to-c", "build-scripts", "magic-sys", "magic"]
