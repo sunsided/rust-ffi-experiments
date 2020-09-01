@@ -1,6 +1,6 @@
 .PHONY: all
 
-all: array_utils main
+all: clean array_utils main
 
 clean:
 	rm -rf build/
@@ -15,10 +15,10 @@ main: build_dir src/main.rs
 	rustc --crate-type=bin src/main.rs -o build/arrays -L. -Lbuild -larray_utils -C link-arg=-Wl,-rpath=.
 
 ldd: main
-	ldd build/arrays
+	cd build && ldd arrays
 
 ldd-debug: main
-	LD_DEBUG=libs ldd build/arrays
+	cd build && LD_DEBUG=libs ldd arrays
 
 run: all
 	cd build && ./arrays

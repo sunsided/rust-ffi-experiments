@@ -12,6 +12,6 @@ fn main() {
         sum(numbers.as_ptr(), numbers.len() as c_int)
     };
 
-    println!("The total is {}", total);
+    println!("The total is {} (calculated in C)", total);
     assert_eq!(total, numbers.iter().sum());
 }
