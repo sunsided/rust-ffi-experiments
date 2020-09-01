@@ -1,2 +1,2 @@
 [workspace]
-members = ["call-c-from-rust", "call-rust-from-c", "send-array-to-c", "send-array-to-rust", "opaque-pointers-in-c", "basic-callbacks", "magic-sys"]
+members = ["call-c-from-rust", "call-rust-from-c", "send-array-to-c", "send-array-to-rust", "opaque-pointers-in-c", "basic-callbacks", "stateful-callbacks", "magic-sys"]
