@@ -12,3 +12,7 @@ version = "0.1.0"
 name = "magic-sys"
 version = "0.1.0"
 
+[[package]]
+name = "passing-arrays"
+version = "0.1.0"
+
