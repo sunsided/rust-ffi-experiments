@@ -29,10 +29,74 @@ TL;DR
 make run
 ```
 
+### Accessing invalid memory
+
+Since `my_vec_contents(vec)` returns a raw pointer, we can just attempt to write
+at arbitrary locations:
+
+```c
+int *const numbers = my_vec_contents(vec);
+numbers[100] = 192;
+```
+
+When running under Valgrind (e.g. `make valgrind`) with the above change, it 
+notes the invalid write:
+
+```
+==166245== Memcheck, a memory error detector
+==166245== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==166245== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==166245== Command: ./main
+==166245== 
+The initial length is 0
+After pushing 42, the length is 1
+After pushing 123, the length is 2
+Iterating over the items in my vec:
+==166245== Invalid write of size 4
+==166245==    at 0x1092F7: main (in /home/markus/dev/EigeneSources/rust/magic-sys/opaque-pointers-in-c/build/main)
+==166245==  Address 0x4b20670 is 320 bytes inside an unallocated block of size 4,192,944 in arena "client"
+==166245== 
+my_vec[0] = 42
+my_vec[1] = 123
+Destroying MyVec([42, 123])
+==166245== 
+==166245== HEAP SUMMARY:
+==166245==     in use at exit: 1,232 bytes in 6 blocks
+==166245==   total heap usage: 10 allocs, 4 frees, 2,328 bytes allocated
+==166245== 
+==166245== LEAK SUMMARY:
+==166245==    definitely lost: 0 bytes in 0 blocks
+==166245==    indirectly lost: 0 bytes in 0 blocks
+==166245==      possibly lost: 0 bytes in 0 blocks
+==166245==    still reachable: 1,232 bytes in 6 blocks
+==166245==         suppressed: 0 bytes in 0 blocks
+==166245== Rerun with --leak-check=full to see details of leaked memory
+==166245== 
+==166245== For lists of detected and suppressed errors, rerun with: -s
+==166245== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+```
+
+The application itself continues to work otherwise, so care needs to be taken here.
+Observing the error in Valgrind also just may have been a lucky catch since address `100`
+is very likely to be out of bounds for the underlying vector of two elements. Assuming that the vector
+re-allocates memory in sizes of powers of two however, the following code easily
+introduces a way more subtle bug:
+
+```c
+int *const numbers = my_vec_contents(vec);
+numbers[3] = 192;
+```
+
+Indeed, running that code under Valgrind doesn't show an error. The reason
+here is that after two insertions, the underlying `Vec` should have allocated memory of length `4`,
+so all addresses `numbers[0]` to `numbers[3]` are recognized as "valid". Attempting to
+write to `numbers[4]` again is then out-of-bounds and will result in Valgrind complaining
+in an error similar to the one shown above. 
+
 ### Leaking memory on purpose
 
 To see what happens if we don't free the `MyVec` instance by calling `my_vec_destroy(...)` in C,
-here's an output of Valgrind after running `valgrind ./main` from the `build` directory (or just use `make valgrind`):
+here's an output of Valgrind:
 
 ```
 ==165275== Memcheck, a memory error detector
