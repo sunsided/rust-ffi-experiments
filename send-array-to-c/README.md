@@ -6,6 +6,12 @@ Here, a Rust application provides a slice in [main.rs](src/main.rs) and passes i
 TL;DR
 
 ```bash
+cargo run --bin send-array-to-c
+```
+
+or
+
+```bash
 make run
 ```
 

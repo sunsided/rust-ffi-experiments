@@ -3,6 +3,8 @@
 An experiment for learning Rust's FFI. Some pointers:
 
 - [Calling `libc`'s `puts` from Rust](call-c-from-rust)
+- [Cargo Build Scripts](build-scripts) (i.e., `build.rs`)
+
 - [Calling a Rust function from C](call-rust-from-c)
 - [Sending a Rust slice to a C function](send-array-to-c)
 - [Sending a C array to a Rust function](send-array-to-rust)
@@ -10,4 +12,3 @@ An experiment for learning Rust's FFI. Some pointers:
 - [Passing complex types from Rust to C through opaque pointers](opaque-pointers-in-c) (with Valgrind examples)
 - [Basic Callbacks: Passing a Rust function pointer to C](basic-callbacks)
 - [Stateful Callbacks: Calling from C into a Rust function pointer (passing some state)](stateful-callbacks)
-- [Cargo Build Scripts](build-scripts) (i.e., `build.rs`)

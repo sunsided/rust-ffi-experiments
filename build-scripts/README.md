@@ -6,5 +6,5 @@ Rust binary in [main.rs](src/main.rs) invoking a method from there.
 TL;DR:
 
 ```bash
-cargo run
+cargo run --bin build-scripts
 ```
