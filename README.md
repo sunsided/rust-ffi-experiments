@@ -7,3 +7,4 @@ An experiment for learning Rust's FFI. Some pointers:
 - [Sending a Rust slice to a C function](send-array-to-c)
 - [Sending a C array to a Rust function](send-array-to-rust)
 - [Passing POD (Plain Old Data) types from C to Rust](send-pod-to-rust)
+- [Passing complex types from Rust to C through opaque pointers](opaque-pointers-in-c)
